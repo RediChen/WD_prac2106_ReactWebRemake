@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;500;700;900&display=swap")
+$color-04: #fdfdfd
+$color-05: #ddd
+$color-06: #55555555
+$color-14: hsl(350, 70%, 95%)
+$color-16: hsl(332, 87%, 23%)
+$color-24: LavenderBlush
+$color-25: hsl(329, 100%, 90%)
+$color-26: hsl(330, 80%, 71%)
+$color-shade: rgba(#999, 0.3)
+//============
+@mixin font-zh($sz, $wt)
+    //wt is in 200, 300, 500, 700, 900
+    font-family: "Noto Serif TC", serif
+    font-weight: $wt
+    font-size: $sz
+//============
+@mixin rwdFor($mode)
+    @if $mode == "desktop"
+        @media screen and (min-width: 1025px)
+            @content
+    @else if $mode == "tablet"
+        @media screen and (max-width: 1024px)
+            @content
+    @else if $mode == "mobile"
+        @media screen and (max-width: 676px)
+            @content
+    @else
+        @error "不存在的裝置代稱！"
+//======================================
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+html, body
+    background-image: url(../images/bgPattern_64px.png)
+    background-repeat: repeat
+    @include rwdFor("desktop")
+        font-size: 18px
+    @include rwdFor("tablet")
+        font-size: 16px
+.logo
+    transition: filter 0.5s
+    &:hover
+        filter: drop-shadow(0 5px 30px rgba($color-24, 0.9))
+nav
+    width: 100%
+    position: sticky
+    top: 0
+    z-index: 2
+    background: $color-16
+    border-radius: 0 0 80% 80% / 0 0 55% 55%
+    box-shadow: 0 0 3px $color-shade
+    display: flex
+    flex-flow: row
+    justify-content: space-around
+    .nav-link
+        $fz: 1.2rem
+        $fz-times: 2
+        height: $fz * $fz-times
+        display: block
+        padding: 5px 1rem
+        border: none
+        border-radius: 30%
+        background-color: transparent
+        transition: 0.5s
+            //* 文字樣式
+        line-height: $fz-times
+        @include font-zh(#{$fz}, 700)
+        @include rwdFor("desktop")
+            color: $color-14
+        @include rwdFor("tablet")
+            color: $color-16
+        // 文字樣式 END
+        //* 配合弧度的高度微調：from 內 to 外
+        @include rwdFor("desktop")
+            &:nth-child(3),
+            &:nth-child(5)
+                transform: translateY(30px)
+            &:nth-child(4n + 2)
+                transform: translateY(25px)
+            &:nth-child(6n + 1)
+                transform: translateY(15px)
+        // 配合弧度的高度微調 END
+        //* hover 等設定
+                position: relative
+        &::after
+            content: ""
+            position: absolute
+            top: 0
+            left: 50%
+            transform: translateX(-50%)
+            width: 0
+            border: 3px solid transparent
+            transition: 0.5s
+        &:hover::after
+            width: 90%
+            border-color: hsl(330, 75%, 77%)
+        &:active
+            filter: brightness(125%)
+        // hover 等設定 END
+
+#home
+    //Part I-0 : 圖片設定
+    height: 100vh
+    width: 100%
+    @include rwdFor("desktop")
+        background-image: url("../images/Homepage_desktop.jpg")
+    @include rwdFor("tablet")
+        background-image: url("../images/Homepage_tablet.png")
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center
+
+    overflow: hidden
+    filter: contrast(0.65) brightness(1.2) saturate(1.3)
+    //Part I-1 : 樣式設定
+    #intro-disk
+        position: absolute
+        width: 22em
+        height: 4em
+        border-radius: 50%
+        box-shadow: 0 0 40px 10px $color-24 inset
+        @include rwdFor("desktop")
+            top: 34vh
+            left: 40vw
+        @include rwdFor("tablet")
+            top: 25vh
+            left: 52%
+            transform: translateX(-50%)
+        @include rwdFor("mobile")
+            width: 15em
+            height: 3em
+            top: 21vh
+            left: 52%
+            box-shadow: 0 0 20px 10px $color-24 inset
+    h1
+        display: block
+        position: absolute
+        @include font-zh(5em, 900)
+        color: #ff61b0
+        @include rwdFor("desktop")
+            top: 26vh
+            left: 41vw
+            text-shadow: 1px -1px 0 $color-24, 2px -2px 0 #e1cdd5, 3px -3px 0 #d1bdc5, 4px -4px 0 #c1adb5,5px -5px 0 #b19da5
+        @include rwdFor("tablet")
+            top: 18vh
+            left: 52%
+            transform: translateX(-50%)
+            text-shadow: -1px -1px 0 $color-24, -2px -2px 0 #e1cdd5, -3px -3px 0 #d1bdc5, -4px -4px 0 #c1adb5, -5px -5px 0 #b19da5
+        @include rwdFor("mobile")
+            top: 17vh
+            @include font-zh(3em, 900)
+            word-break: keep-all
+        transition: 1s
+        &:hover
+            $offset-ls: 1rem
+            letter-spacing: $offset-ls
+            transform: translateX(-1.5*$offset-ls) scale(1.1)
+
+    h2
+        $offset-ls: 5px //因為 letter spacing 的微調
+        // for 定位
+        display: block
+        // 背景樣式
+        position: absolute
+        padding: 1em 0
+        padding-left: $offset-ls
+        background-color: rgba($color-04, 0.6)
+        box-shadow: 0 0 5px 7px rgba($color-04, 0.5)
+        // 文字樣式
+        text-align: center
+        font-size: 2em
+        color: hsl(0, 50%, 30%)
+        letter-spacing: 5px
+
+        @include rwdFor("desktop")
+            top: 46vh
+            right: 0
+            transform: translateX($offset-ls)
+            padding-left: 3vw
+            padding-right: 15vw
+            text-shadow: 3px -3px 3px #fff
+        @include rwdFor("tablet")
+            width: calc(100%)
+            top: 44vh
+            left: 50%
+            transform: translateX(calc(-50%))
+            text-shadow: -3px -3px 3px #fff
+        @include rwdFor("mobile")
+            top: 36vh
+            text-shadow: -3px -3px 3px #fff
+            padding: 0.5em 0
+            font-size: 1.5em
