@@ -121,7 +121,7 @@ nav .nav-link:active {
           filter: brightness(125%);
 }
 
-#home {
+#homepage {
   height: 100vh;
   width: 100%;
   background-size: cover;
@@ -133,18 +133,18 @@ nav .nav-link:active {
 }
 
 @media screen and (min-width: 1025px) {
-  #home {
+  #homepage {
     background-image: url("../images/Homepage_desktop.jpg");
   }
 }
 
 @media screen and (max-width: 1024px) {
-  #home {
+  #homepage {
     background-image: url("../images/Homepage_tablet.png");
   }
 }
 
-#home #intro-disk {
+#homepage #intro-disk {
   position: absolute;
   width: 22em;
   height: 4em;
@@ -154,14 +154,14 @@ nav .nav-link:active {
 }
 
 @media screen and (min-width: 1025px) {
-  #home #intro-disk {
+  #homepage #intro-disk {
     top: 34vh;
     left: 40vw;
   }
 }
 
 @media screen and (max-width: 1024px) {
-  #home #intro-disk {
+  #homepage #intro-disk {
     top: 25vh;
     left: 52%;
     -webkit-transform: translateX(-50%);
@@ -170,7 +170,7 @@ nav .nav-link:active {
 }
 
 @media screen and (max-width: 676px) {
-  #home #intro-disk {
+  #homepage #intro-disk {
     width: 15em;
     height: 3em;
     top: 21vh;
@@ -180,7 +180,7 @@ nav .nav-link:active {
   }
 }
 
-#home h1 {
+#homepage h1 {
   display: block;
   position: absolute;
   font-family: "Noto Serif TC", serif;
@@ -192,7 +192,7 @@ nav .nav-link:active {
 }
 
 @media screen and (min-width: 1025px) {
-  #home h1 {
+  #homepage h1 {
     top: 26vh;
     left: 41vw;
     text-shadow: 1px -1px 0 LavenderBlush, 2px -2px 0 #e1cdd5, 3px -3px 0 #d1bdc5, 4px -4px 0 #c1adb5, 5px -5px 0 #b19da5;
@@ -200,7 +200,7 @@ nav .nav-link:active {
 }
 
 @media screen and (max-width: 1024px) {
-  #home h1 {
+  #homepage h1 {
     top: 18vh;
     left: 52%;
     -webkit-transform: translateX(-50%);
@@ -210,7 +210,7 @@ nav .nav-link:active {
 }
 
 @media screen and (max-width: 676px) {
-  #home h1 {
+  #homepage h1 {
     top: 17vh;
     font-family: "Noto Serif TC", serif;
     font-weight: 900;
@@ -219,13 +219,13 @@ nav .nav-link:active {
   }
 }
 
-#home h1:hover {
+#homepage h1:hover {
   letter-spacing: 1rem;
   -webkit-transform: translateX(-1.5rem) scale(1.1);
           transform: translateX(-1.5rem) scale(1.1);
 }
 
-#home h2 {
+#homepage h2 {
   display: block;
   position: absolute;
   padding: 1em 0;
@@ -240,7 +240,7 @@ nav .nav-link:active {
 }
 
 @media screen and (min-width: 1025px) {
-  #home h2 {
+  #homepage h2 {
     top: 46vh;
     right: 0;
     -webkit-transform: translateX(5px);
@@ -252,7 +252,7 @@ nav .nav-link:active {
 }
 
 @media screen and (max-width: 1024px) {
-  #home h2 {
+  #homepage h2 {
     width: calc(100%);
     top: 44vh;
     left: 50%;
@@ -263,7 +263,7 @@ nav .nav-link:active {
 }
 
 @media screen and (max-width: 676px) {
-  #home h2 {
+  #homepage h2 {
     top: 36vh;
     text-shadow: -3px -3px 3px #fff;
     padding: 0.5em 0;

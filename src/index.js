@@ -97,7 +97,7 @@ class Nav extends React.Component {
 class Homepage extends React.Component {
     render() {
         return (
-            <div id="home">
+            <div id="homepage">
                 <div id="intro-disk"></div>
                 <h1>心晴診所</h1>
                 <h2 className="title-2">值得您信賴的專業團隊</h2>
