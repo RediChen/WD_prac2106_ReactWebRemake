@@ -1,8 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import classNames from "classnames" ;
 // import useMediaQuery from '@material-ui/core/useMediaQuery';
 import './css/style.css';
 // import './sass/style.sass' ;
+//// 待處理 React 搭配的 sass 套件設定
 // function RwdPar() {
 //     //{PC, Tablet, Mob} -> {3, 2, 1}
 //     const isPC = useMediaQuery('(min-width:1025px)'),
@@ -13,10 +15,11 @@ import './css/style.css';
 // }
 //* Nav, Hbger & tothetop */
 function Logo(props) {
-    //input : size = 64px
-    let address = "./images/" + props.size + "_woFrame.png";
+    //input : size = 64 (in px)
+    const address = "./images/" + props.size + "px_woFrame.png",
+    logoClass = classNames('logo', "logo-" + props.size);
     return (
-        <img className="logo" src={address}
+        <img className={logoClass} src={address}
             alt="心晴診所 Sunshine Clinic logo" />
     );
 }
@@ -55,7 +58,7 @@ class Nav extends React.Component {
     // 函數集 methods - render 子元件
     renderLogo() {
         return (
-            <Logo size="128px" />
+            <Logo size="64" />
         );
     }
     renderHbger() {
@@ -76,9 +79,7 @@ class Nav extends React.Component {
         const pack = [];
         for (let i = start; i <= end; i++) {
             pack.push(this.renderA(i));
-            console.log("Now is the " + i + "th : " + this.renderA(i));
         }
-        console.log("This is pack : " + pack);
         return (pack);
     }
     // 函數集 methods - handle 子元件
@@ -94,16 +95,14 @@ class Nav extends React.Component {
     }
 }
 //* 首頁畫面 */
-class Homepage extends React.Component {
-    render() {
-        return (
-            <div id="homepage">
-                <div id="intro-disk"></div>
-                <h1>心晴診所</h1>
-                <h2 className="title-2">值得您信賴的專業團隊</h2>
-            </div>
-        );
-    }
+function Homepage() {
+    return (
+        <div id="homepage">
+            <div id="intro-disk"></div>
+            <h1>心晴診所</h1>
+            <h2 className="title-2">值得您信賴的專業團隊</h2>
+        </div>
+    );
 }
 class BigPicture extends React.Component {
     render() {

@@ -35,6 +35,11 @@ html, body {
           filter: drop-shadow(0 5px 30px rgba(255, 240, 245, 0.9));
 }
 
+.logo-64 {
+  height: 64px;
+  width: auto;
+}
+
 nav {
   width: 100%;
   position: -webkit-sticky;
@@ -54,6 +59,23 @@ nav {
           flex-flow: row;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+
+@media screen and (min-width: 1025px) {
+  nav {
+    height: 4.5rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  nav {
+    height: 4rem;
+  }
+}
+
+nav .logo {
+  -webkit-transform: translateY(8px);
+          transform: translateY(8px);
 }
 
 nav .nav-link {
@@ -85,16 +107,16 @@ nav .nav-link {
 
 @media screen and (min-width: 1025px) {
   nav .nav-link:nth-child(3), nav .nav-link:nth-child(5) {
-    -webkit-transform: translateY(30px);
-            transform: translateY(30px);
-  }
-  nav .nav-link:nth-child(4n + 2) {
-    -webkit-transform: translateY(25px);
-            transform: translateY(25px);
-  }
-  nav .nav-link:nth-child(6n + 1) {
     -webkit-transform: translateY(15px);
             transform: translateY(15px);
+  }
+  nav .nav-link:nth-child(4n + 2) {
+    -webkit-transform: translateY(12px);
+            transform: translateY(12px);
+  }
+  nav .nav-link:nth-child(6n + 1) {
+    -webkit-transform: translateY(5px);
+            transform: translateY(5px);
   }
 }
 
@@ -134,12 +156,14 @@ nav .nav-link:active {
 
 @media screen and (min-width: 1025px) {
   #homepage {
+    margin-top: -4.5rem;
     background-image: url("../images/Homepage_desktop.jpg");
   }
 }
 
 @media screen and (max-width: 1024px) {
   #homepage {
+    margin-top: -4rem;
     background-image: url("../images/Homepage_tablet.png");
   }
 }
@@ -221,8 +245,8 @@ nav .nav-link:active {
 
 #homepage h1:hover {
   letter-spacing: 1rem;
-  -webkit-transform: translateX(-1.5rem) scale(1.1);
-          transform: translateX(-1.5rem) scale(1.1);
+  -webkit-transform: translate(-1.5rem, -0.5rem) scale(1.1);
+          transform: translate(-1.5rem, -0.5rem) scale(1.1);
 }
 
 #homepage h2 {
