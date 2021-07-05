@@ -1,7 +1,9 @@
+// 套件
 import React from "react";
 import ReactDOM from "react-dom";
-import classNames from "classnames" ;
 // import useMediaQuery from '@material-ui/core/useMediaQuery';
+// css & js
+import { dataTeam } from "./dataTeam.js"
 import './css/style.css';
 // import './sass/style.sass' ;
 //// 待處理 React 搭配的 sass 套件設定
@@ -15,11 +17,10 @@ import './css/style.css';
 // }
 //* Nav, Hbger & tothetop */
 function Logo(props) {
-    //input : size = 64 (in px)
-    const address = "./images/" + props.size + "px_woFrame.png",
-    logoClass = classNames('logo', "logo-" + props.size);
+    //input e.g. : size=64 (in px)
+    const address = "./images/" + props.size + "px_woFrame.png";
     return (
-        <img className={logoClass} src={address}
+        <img className={`logo logo-${props.size}`} src={address}
             alt="心晴診所 Sunshine Clinic logo" />
     );
 }
@@ -55,7 +56,7 @@ class Nav extends React.Component {
             isOpen: true,
         }
     }
-    // 函數集 methods - render 子元件
+    // 函數集 methods
     renderLogo() {
         return (
             <Logo size="64" />
@@ -69,6 +70,7 @@ class Nav extends React.Component {
     renderA(i) {
         return (
             <NavLink
+                index={i}
                 onClick={this.handleClick}
                 text={this.state.parList[i].ctt}
             >
@@ -82,7 +84,6 @@ class Nav extends React.Component {
         }
         return (pack);
     }
-    // 函數集 methods - handle 子元件
     // 渲染
     render() {
         return (
@@ -95,7 +96,7 @@ class Nav extends React.Component {
     }
 }
 //* 首頁畫面 */
-function Homepage() {
+function HomePage() {
     return (
         <div id="homepage">
             <div id="intro-disk"></div>
@@ -104,17 +105,93 @@ function Homepage() {
         </div>
     );
 }
+
+//* 團隊畫面 */
+// function handleData() {
+
+// }
+// 按鈕面板
+function TeamBtn(props) {
+    const i = props.index,
+        name = [];
+    name.push(
+        dataTeam[i].name.slice(0, 3),
+        <br />,
+        dataTeam[i].name.slice(3)
+    );
+    return (
+        <div className="team-btn" onClick={props.onClick}>
+            <h2>{name}</h2>
+        </div>
+    );
+}
+// 資訊面板
+// function CardTitle(props) {
+//     return (
+//         <>
+//             <h3>{prop.text}</h3>
+//             <div className="hr-2">
+//                 <div></div>
+//                 <hr />
+//             </div>
+//         </>
+//     );
+// }
+// function Card(props) {
+
+// }
+class TeamInfo extends React.Component {
+    render() {
+        return (
+            <div>
+                {/* {renderCards()} */}
+            </div>
+        );
+    }
+}
+// 主元件
+class TeamPage extends React.Component {
+    renderTeamBtns() {
+        const pack = [];
+        for (let i = 0; i < dataTeam.length; i++) {
+            pack.push(
+                <TeamBtn
+                    index={i}
+                    onClick={() => this.handleBtn(i)} />
+            );
+        }
+        return (pack);
+    }
+    handleBtn(i) {
+        console.log("The " + i + "th is not handled yet.");
+    }
+    render() {
+        return (
+            <section id="teampage">
+                <header>
+                    <hr className="hr-1" />
+                    <h1 className="title-1">醫療團隊</h1>
+                </header>
+                <div id="team-btn-box">
+                    {this.renderTeamBtns()}
+                </div>
+            </section>
+        );
+    }
+}
+//* 最終組裝 */
 class BigPicture extends React.Component {
     render() {
         return (
             <>
                 <Nav />
-                <Homepage />
+                <HomePage />
+                <TeamPage />
             </>
         );
     }
 }
-// 最終渲染區
+//* 最終渲染區 */
 ReactDOM.render(
     <BigPicture />,
     document.getElementById("root")

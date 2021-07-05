@@ -14,7 +14,6 @@ $color-shade: rgba(#999, 0.3)
     font-family: "Noto Serif TC", serif
     font-weight: $wt
     font-size: $sz
-//============
 @mixin rwdFor($mode)
     @if $mode == "desktop"
         @media screen and (min-width: 1025px)
@@ -28,6 +27,45 @@ $color-shade: rgba(#999, 0.3)
     @else
         @error "不存在的裝置代稱！"
 //======================================
+.title-1
+    text-align: center
+    @include font-zh(2rem, 900)
+    @include rwdFor("mobile")
+        @include font-zh(1.5rem, 900)
+    $offset: 15px
+    letter-spacing: $offset
+    text-indent: $offset
+.title-2
+    text-align: center
+    @include font-zh(1.2rem, 700)
+    @include rwdFor("mobile")
+        @include font-zh(1rem, 900)
+.p-text
+    @include font-zh(1rem, 300)
+.hr-1
+    margin: 0.5rem auto 1rem
+    border-color: $color-16
+    @include rwdFor("desktop")
+        max-width: 70%
+    @include rwdFor("tablet")
+        max-width: 80%
+.hr-2
+    //複合式；靠左
+    margin-left: 1rem
+    margin-bottom: 0.5rem
+    & > div
+        width: 15px
+        height: 5px
+        background-color: $color-26
+    hr
+        width: 80%
+        margin: 0
+        border-color: $color-26
+.hr-3
+    margin: 0.5rem auto 1rem
+    max-width: 25%
+    border-color: $color-26
+//============
 *
     margin: 0
     padding: 0
@@ -202,3 +240,185 @@ nav
             text-shadow: -3px -3px 3px #fff
             padding: 0.5em 0
             font-size: 1.5em
+
+#teampage
+    //* Part 0 : 整體格局
+    // team =header, buttons, cards}
+    $title-h: 80px
+    $card-pd: 1rem // also gap
+    $card-h: 540px
+    $section-h: calc(#{$title-h} + #{$card-h})
+    max-width: 100%
+    overflow: hidden
+    @include rwdFor("desktop")
+        height: auto
+        margin: 150px 0 100px
+        padding: 0 20px
+        display: grid
+        grid-template-columns: repeat(1, 4fr 7fr)
+        grid-template-rows: auto auto
+        row-gap: 2 * $card-pd
+        column-gap: 3 * $card-pd
+        header
+            grid-column: 1 / span 2
+    @include rwdFor("tablet")
+        margin: 100px 5px
+        height: 100vh
+        display: flex
+        flex-direction: column
+        #team-btn-box
+            order: 4 // flex 的順序
+    //* Part II : 選取按鈕區
+    #team-btn-box
+        // box = btn > text }_9
+        box-shadow: -8px 8px 8px -3px $color-shade
+
+        @mixin box-setup($box-leng, $box-pd, $gap, $f-sz)
+            //pd = padding, bd = border, f-sz = font-size
+            $grid-h: 2 * $f-sz
+            $leng-real: $card-h //TODO 待轉換RWD
+            $leng: calc($leng-real - 2 * $box-pd - 2 * $box-pd - 2 * $gap)
+            width: $leng
+            height: $leng
+            border: $box-pd solid $color-05
+            padding: $box-pd
+            display: grid
+            grid-template-columns: repeat(3, 1fr)
+            grid-template-rows: repeat(3, 1fr)
+            grid-gap: $gap
+            h2
+                @include font-zh($f-sz, 500)
+        @include rwdFor("desktop")
+            @include box-setup(540px, 10px, 5px, 1.5em)
+        @include rwdFor("tablet")
+            @include box-setup(400px, 10px, 10px, 1.2em)
+        @include rwdFor("mobile")
+            @include box-setup(360px, 5px, 5px, 0.8em)
+    
+
+        //按鈕 Part 1 : 格式的設定
+        .team-btn
+            display: flex
+            align-items: center
+            justify-content: center //for RWD : mobile
+            text-align: center //for RWD : desktop
+            cursor: default
+    
+        //按鈕 Part 2 : 顏色的設定
+        .team-btn
+            background-color: $color-shade
+            // 啟動者的對應強調
+            &-active
+                // background-color: $color-14
+                &:nth-child(-n + 2)
+                    background-color: #f8c9a0
+                &:nth-child(4),
+                &:nth-child(5)
+                    background-color: $color-24
+                &:nth-child(-3n + 6)
+                    background-color: HoneyDew
+                &:nth-child(n + 7)
+                    background-color: AliceBlue
+            // 連結的基本變化
+            &:not(.team-btn-active):hover
+                filter: brightness(1.2)
+            &:active
+                filter: invert(0.2)
+    //* Part III : 詳細介紹
+    #team-card-wrap
+        background-color: rgba($color-05, 0.5)
+        box-shadow: -8px 8px 8px -3px $color-shade
+        height: $card-h
+        .team-card
+            // card =img, div-h2, div-about}
+            //* 共通設定
+            // 內距 & 高度
+            @include rwdFor("desktop")
+                // height: 450px
+                height: 100%
+                padding: 3em
+            @include rwdFor("tablet")
+                // height: 60vh
+                height: 350px
+                padding: 3em
+            @include rwdFor("mobile")
+                height: auto
+                width: 100%
+                padding: 1em 1.5em
+            // 共通設定 END
+            //* 格局設定
+            @include rwdFor("desktop")
+                display: grid
+                grid-template-areas: "photos showcases" "names showcases"
+                grid-template-columns: repeat(1, 1fr 3fr)
+                grid-template-rows: repeat(1, 3fr 1fr)
+                grid-gap: 1em
+                //area 命名
+                & > img
+                    grid-area: photos
+            
+                & > h2
+                    grid-area: names
+            
+                & > .team-about
+                    grid-area: showcases
+            
+                //area 命名 END
+            @include rwdFor("tablet")
+                display: grid
+                grid-template-areas: "photos showcases" "names showcases"
+                grid-template-columns: repeat(1, 1fr 3fr)
+                grid-template-rows: repeat(1, 3fr 2fr)
+                grid-gap: 1em
+                //area 命名
+                & > img
+                    grid-area: photos
+            
+                & > h2
+                    grid-area: names
+            
+                & > .team-about
+                    grid-area: showcases
+                //area 命名 END
+            @include rwdFor("mobile")
+                display: flex
+                flex-direction: column
+                align-items: center
+                & > img
+                    height: 20vh
+                h2
+                    margin: 0.5em 0 1em
+            // 照片
+            & > img
+                width: auto
+                display: block
+                object-fit: contain
+            // 成員姓名
+            & > div:nth-child(2)
+                text-align: center
+                h2
+                    padding: 0 0.5em
+                    display: inline-block
+                    border-bottom: 1px solid $color-16
+                    box-shadow: 0 9px 5px -6px $color-06
+            // 格局設定 END
+            .team-about
+                // card =img, div-h2, div-about}
+                // about =sub-card}_n
+                padding: 0 5%
+                overflow: auto //自動生成內滾動範圍
+                background-color: $color-04
+                box-shadow: 10px 0 10px -10px inset $color-shade
+                @include rwdFor("mobile")
+                    height: 50vh
+                    min-width: 90%
+                .team-sub-card
+                    padding: 1em 0
+                    h3
+                        text-indent: 2em
+                        margin-bottom: -0.3em
+                    ul
+                        list-style-type: none
+                    p,
+                    li
+                        line-height: 2.5
