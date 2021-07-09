@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 // import useMediaQuery from '@material-ui/core/useMediaQuery';
 // css & js
-import { dataTeam } from "./dataTeam.js"
+import { dataTeam } from "./dataTeam.jsx"
 import './css/style.css';
 // import './sass/style.sass' ;
 //// 待處理 React 搭配的 sass 套件設定
