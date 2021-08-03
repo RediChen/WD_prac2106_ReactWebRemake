@@ -25,16 +25,16 @@ $color-shade: rgba(#999, 0.3)
         @media screen and (max-width: 676px)
             @content
     @else
-        @error "不存在的裝置代稱！"
+        @error $mode + "是不存在的裝置代稱！"
 //======================================
 .title-1
     text-align: center
     @include font-zh(2rem, 900)
     @include rwdFor("mobile")
         @include font-zh(1.5rem, 900)
-    $offset: 15px
-    letter-spacing: $offset
-    text-indent: $offset
+        $offset: 15px
+        letter-spacing: $offset
+        text-indent: $offset
 .title-2
     text-align: center
     @include font-zh(1.2rem, 700)
@@ -71,7 +71,7 @@ $color-shade: rgba(#999, 0.3)
     padding: 0
     box-sizing: border-box
 html, body
-    background-image: url(../images/bgPattern_64px.png)
+    background-image: url(../assets/images/bgPattern_64px.png)
     background-repeat: repeat
     @include rwdFor("desktop")
         font-size: 18px
@@ -147,16 +147,16 @@ nav
             filter: brightness(125%)
         // hover 等設定 END
 
-#homepage
+#home-page
     //Part I-0 : 圖片設定
     height: 100vh
     width: 100%
     @include rwdFor("desktop")
         margin-top: -4.5rem
-        background-image: url("../images/Homepage_desktop.jpg")
+        background-image: url("../assets/images/Homepage_desktop.jpg")
     @include rwdFor("tablet")
         margin-top: -4rem
-        background-image: url("../images/Homepage_tablet.png")
+        background-image: url("../assets/images/Homepage_tablet.png")
     background-size: cover
     background-repeat: no-repeat
     background-position: center
@@ -164,7 +164,7 @@ nav
     overflow: hidden
     filter: contrast(0.65) brightness(1.2) saturate(1.3)
     //Part I-1 : 樣式設定
-    #intro-disk
+    #title-disk
         position: absolute
         width: 22em
         height: 4em
@@ -201,7 +201,7 @@ nav
             top: 17vh
             @include font-zh(3em, 900)
             word-break: keep-all
-        transition: 1s
+            transition: 1s
         &:hover
             $offset-ls: 1rem
             letter-spacing: $offset-ls
@@ -240,8 +240,54 @@ nav
             text-shadow: -3px -3px 3px #fff
             padding: 0.5em 0
             font-size: 1.5em
+#intro-page
+    // 背景
+    width: 100%
+    height: 100vh
+    $color1: #fffafaaa
+    $color2: #ffd5e988
+    background-image: linear-gradient(180deg, $color1 10%, $color2 80%, $color2 85%, $color1)
+    @include rwdFor("mobile")
+        height: auto
+    // 文字大卡
+    & > div
+        margin: 0 auto
+        padding: 2.5em 2em 5em
+        background-color: $color-04
+        box-shadow: 5px 5px 20px $color-shade
+        border-radius: 5%
 
-#teampage
+        @include rwdFor("desktop")
+            width: 40%
+            margin-top: 5%
+        @include rwdFor("tablet")
+            width: 70%
+            margin-top: 8%
+        @include rwdFor("mobile")
+            width: 90%
+            margin-top: 10%
+            padding: 1em 1em 5em
+        p
+            line-height: 2.5
+            text-indent: 2em
+
+            span
+                color: $color-16
+                font-weight: 700
+                background-color: rgba($color-24, 0.3)
+        ul
+            line-height: 2.5
+            list-style-type: none
+            text-indent: 4em
+            @include rwdFor("mobile")
+                text-indent: 2em
+            u
+                font-weight: 700
+            span
+                color: $color-16
+                font-weight: 700
+                background-color: rgba($color-24, 0.3)
+#team-page
     //* Part 0 : 整體格局
     // team =header, buttons, cards}
     $title-h: 80px
@@ -294,7 +340,6 @@ nav
             @include box-setup(400px, 10px, 10px, 1.2em)
         @include rwdFor("mobile")
             @include box-setup(360px, 5px, 5px, 0.8em)
-    
 
         //按鈕 Part 1 : 格式的設定
         .team-btn
@@ -303,7 +348,7 @@ nav
             justify-content: center //for RWD : mobile
             text-align: center //for RWD : desktop
             cursor: default
-    
+
         //按鈕 Part 2 : 顏色的設定
         .team-btn
             background-color: $color-shade
@@ -356,13 +401,13 @@ nav
                 //area 命名
                 & > img
                     grid-area: photos
-            
+
                 & > h2
                     grid-area: names
-            
+
                 & > .team-about
                     grid-area: showcases
-            
+
                 //area 命名 END
             @include rwdFor("tablet")
                 display: grid
@@ -373,10 +418,10 @@ nav
                 //area 命名
                 & > img
                     grid-area: photos
-            
+
                 & > h2
                     grid-area: names
-            
+
                 & > .team-about
                     grid-area: showcases
                 //area 命名 END
