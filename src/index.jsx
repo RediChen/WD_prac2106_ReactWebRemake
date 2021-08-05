@@ -137,12 +137,12 @@ function IntroPage() {
 //* 團隊頁面 */
 // 按鈕面板
 function TeamBtn(props) {
-    const i = props.index;
+    const nth = props.index;
     const name = [];
     name.push(
-        dataTeam[i].name.slice(0, 3),
+        dataTeam[nth].name.slice(0, 3),
         <br />,
-        dataTeam[i].name.slice(3)
+        dataTeam[nth].name.slice(3)
     );
     return (
         <div className="team-btn" onClick={props.onClick}>
@@ -162,31 +162,32 @@ function CardTitle(nth) {
     );
 }
 function CardContent(nth) {
+    //* 包裝「學歷」、「經歷」、「主治」、「專長」四項文本
     const [
         memberDegree,
         memberExperience,
         memberMajor,
         memberSpecialty,
     ] = [[], [], [], []];
-    const varMap = {
+    const dataMap = {
         "學歷": memberDegree,
         "經歷": memberExperience,
         "主治": memberMajor,
         "專長": memberSpecialty
     };
-    const fourInOne = [];
+    const member4in1 = [];
 
-    for (let key in varMap) {
+    for (let key in dataMap) {
         // step 1 : 有內容才渲染
         if (!dataTeam[nth][key]) continue;
         // step 2 : 將所有條目條列成 li
         for (let i in dataTeam[nth][key]) {
-            varMap[key].push(
+            dataMap[key].push(
                 <li>{dataTeam[nth][key][i]}</li>
             );
         }
         // step 3 : 將內容拼進上下文
-        fourInOne.push(
+        member4in1.push(
             <div className="team-sub-card">
                 <h3>{key}</h3>
                 <div className="hr-2">
@@ -194,28 +195,32 @@ function CardContent(nth) {
                     <hr />
                 </div>
                 <ul className="p-text">
-                    {varMap[key]}
+                    {dataMap[key]}
                 </ul>
             </div>
         );
     }
-    const memberRemind = dataTeam[nth]["醫師的叮嚀"];
-
-    return (
-        <div className="team-about">
-            {fourInOne}
+    //* 包裝「醫師的叮嚀」的文本
+    const memberRemind = [], keyWordRemind = "醫師的叮嚀";
+    if (dataTeam[nth][keyWordRemind]) {
+        memberRemind.push(
             <div className="team-sub-card">
-                <h3>醫師的叮嚀</h3>
+                <h3>{keyWordRemind}</h3>
                 <div className="hr-2">
                     <div></div>
                     <hr />
                 </div>
-                <p className="p-text">{memberRemind}</p>
+                <p className="p-text">{dataTeam[nth][keyWordRemind]}</p>
             </div>
+        );
+    }
+    return (
+        <div className="team-about">
+            {member4in1}
+            {memberRemind}
         </div>
     );
 }
-
 // 主元件
 function TeamPage() {
     const [memberIndex, setMemberIndex] = useState(0);
@@ -250,7 +255,7 @@ function TeamPage() {
         </section>
     );
 }
-function Footer(props) {
+function Footer() {
     const imgAdj = {
         display: 'inline-block',
         transform: `rotate(-90deg)`,
