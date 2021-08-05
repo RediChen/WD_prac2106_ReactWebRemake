@@ -291,8 +291,6 @@ nav .nav-link:active {
   font-weight: 900;
   font-size: 5em;
   color: #ff61b0;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 @media screen and (min-width: 1025px) {
@@ -320,6 +318,8 @@ nav .nav-link:active {
     font-weight: 900;
     font-size: 3em;
     word-break: keep-all;
+    -webkit-transition: 1s;
+    transition: 1s;
   }
 }
 
@@ -606,8 +606,8 @@ nav .nav-link:active {
 }
 
 #team-page #team-btn-box .team-btn:active {
-  -webkit-filter: invert(0.2);
-          filter: invert(0.2);
+  -webkit-filter: brightness(0.5);
+          filter: brightness(0.5);
 }
 
 #team-page #team-card-wrap {

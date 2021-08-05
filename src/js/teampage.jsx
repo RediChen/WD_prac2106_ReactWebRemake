@@ -1,27 +1,6 @@
 import { dataTeam } from "./dataTeam.jsx"
 import React, { useState } from "react";
-// 按鈕面板
-// function TeamBtn(props) {
-//     const nth = props.index;
-//     const name = [];
-//     const [isActive, SetIsActive] = useState(false);
-//     function handleClick() {
-//         SetIsActive(!isActive);
-//         props.onClick();
-//     }
-//     name.push(
-//         dataTeam[nth].name.slice(0, 3),
-//         <br />,
-//         dataTeam[nth].name.slice(3)
-//     );
-//     return (
-//         <div className={isActive ? "team-btn team-btn-active" : "team-btn"}
-//             onClick={handleClick}
-//         >
-//             <h2>{name}</h2>
-//         </div>
-//     );
-// }
+
 // 資訊面板
 function CardTitle(nth) {
     const memberName = dataTeam[nth]["name"],
@@ -95,42 +74,45 @@ function CardContent(nth) {
 }
 // 主元件
 function TeamPage() {
+    let stateInit = new Array(dataTeam.length);
+    stateInit.fill(false);
+    const [btnStates, SetBtnStates] = useState(stateInit);
     const [memberIndex, setMemberIndex] = useState(0);
-    // function TeamBtns() {
-    //     let stateInit = new Array(dataTeam.length);
-    //     stateInit.fill(false);
-    //     const [btnStates, SetBtnStates] = useState(stateInit);
-    //     const pack = [];
-    //     function handleClick(nth) {
-    //         SetBtnStates(stateInit);
-    //         SetBtnStates(btnStates[3] = !btnStates[3]);
-    //         setMemberIndex(nth);
-    //     }
-    //     for (let nth = 0; nth < dataTeam.length; nth++) {
-    //         const name = [];
-    //         name.push(
-    //             dataTeam[nth].name.slice(0, 3),
-    //             <br />,
-    //             dataTeam[nth].name.slice(3)
-    //         );
-    //         pack.push(
-    //             <div className={btnStates[nth] ? "team-btn team-btn-active" : "team-btn"}
-    //                 onClick={handleClick(nth)}
-    //             >
-    //                 <h2>{name}</h2>
-    //             </div>
-    //         );
-    //     }
-    //     return (pack);
-    // }
+    function handleClick(i) {
+        SetBtnStates(stateInit);
+        SetBtnStates(btnStates => btnStates[i] = !btnStates[i]);
+        console.log("第 " + i + " 個被按了！");
+        setMemberIndex(i);
+    }
+    // 按鈕面板
+    // 此函數獨立出去會有技術上的障礙
+    function renderTeamBtns() {
+        const pack = [];
+        for (let nth = 0; nth < dataTeam.length; nth++) {
+            const name = [];
+            name.push(
+                dataTeam[nth].name.slice(0, 3),
+                <br />,
+                dataTeam[nth].name.slice(3)
+            );
+            pack.push(
+                <div onClick={() => handleClick(nth)}
+                    className={btnStates[nth] ? "team-btn team-btn-active" : "team-btn"}
+                >
+                    <h2>{name}</h2>
+                </div>
+            );
+        }
+        return (pack);
+    }
     return (
         <section id="team-page">
             <header>
-                <hr className="hr-1" />
                 <h1 className="title-1">醫療團隊</h1>
+                <hr className="hr-1" />
             </header>
             <div id="team-btn-box">
-                {/* {TeamBtns()} */}
+                {renderTeamBtns()}
             </div>
             <div id="team-card-wrap">
                 <article className="team-card">
@@ -142,4 +124,4 @@ function TeamPage() {
     );
 }
 
-export default TeamPage ;
+export default TeamPage;
