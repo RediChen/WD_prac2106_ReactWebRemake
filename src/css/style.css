@@ -227,6 +227,8 @@ nav .nav-link:active {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  -webkit-box-shadow: 0 6px 3px rgba(153, 153, 153, 0.3);
+          box-shadow: 0 6px 3px rgba(153, 153, 153, 0.3);
   overflow: hidden;
   -webkit-filter: contrast(0.65) brightness(1.2) saturate(1.3);
           filter: contrast(0.65) brightness(1.2) saturate(1.3);
@@ -289,6 +291,8 @@ nav .nav-link:active {
   font-weight: 900;
   font-size: 5em;
   color: #ff61b0;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 @media screen and (min-width: 1025px) {
@@ -316,8 +320,6 @@ nav .nav-link:active {
     font-weight: 900;
     font-size: 3em;
     word-break: keep-all;
-    -webkit-transition: 1s;
-    transition: 1s;
   }
 }
 
@@ -375,9 +377,9 @@ nav .nav-link:active {
 
 #intro-page {
   width: 100%;
-  height: 100vh;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #fffafaaa), color-stop(80%, #ffd5e988), color-stop(85%, #ffd5e988), to(#fffafaaa));
-  background-image: linear-gradient(180deg, #fffafaaa 10%, #ffd5e988 80%, #ffd5e988 85%, #fffafaaa);
+  min-height: 100vh;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffafa01), color-stop(3%, #fffafaaa), color-stop(10%, #fffafaaa), color-stop(80%, #ffd5e988), color-stop(85%, #ffd5e988), color-stop(97%, #fffafaaa), to(#fffafa01));
+  background-image: linear-gradient(180deg, #fffafa01, #fffafaaa 3%, #fffafaaa 10%, #ffd5e988 80%, #ffd5e988 85%, #fffafaaa 97%, #fffafa01);
 }
 
 @media screen and (max-width: 676px) {
